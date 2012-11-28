@@ -1,19 +1,21 @@
-# License
+# Licenses
 
 Create software licenses easily.
 
 ## Install
 
-### Bundler: `gem 'license'`
+### Bundler: `gem 'licenses'`
 
-### RubyGems: `gem install license`
+### RubyGems: `gem install licenses`
 
 ## Usage
 
-### Simple
+### Creating
+
+#### Simple
 
 ```ruby
-license = License::Software::MIT.new do |l|
+license = License::MIT.new do |l|
   l.year.start  = 2012
   l.author.name  = 'Ryan Scott Lewis'
   l.author.email = 'ryan@rynet.us'
@@ -22,10 +24,10 @@ end
 p license.to_s # => "Copyright (c) 2012 Ryan Scott Lewis <ryan@rynet.us>\n\nPermission is hereby granted, free of charge..."
 ```
 
-### Multiple Authors
+##### Multiple Authors
 
 ```ruby
-license = License::Software::MIT.new do |l|
+license = License::MIT.new do |l|
   l.year.start  = 2012
   l.authors.add name: 'Ryan Scott Lewis', email: 'ryan@rynet.us'
   l.authors.add name: 'John Doe', email: 'john.doe@example.com'
@@ -41,7 +43,7 @@ p license.authors.last.email # => 'john@mcclain.org'
 p license.authors.last.emails # => ['john@mcclain.org', 'jmcclane@gmail.com]
 ```
 
-#### Smart Setters
+##### Smart Setters
 
 ```ruby
 license = License::Software.new do |l|
@@ -53,10 +55,14 @@ end
 p license.to_s # => "Copyright (c) 2012 Ryan Scott Lewis <ryan@rynet.us>, John Doe <john.doe@example.com>\n\nPermission is hereby granted, free of charge..."
 ```
 
-#### Advanced usage (preferred method)
+##### Advanced
+
+> Note:  This is the preferred method.
+
+Do not pass block variables to enter the scope of the License::Software.
 
 ```ruby
-license = License::Software.new do # Do not pass block variables to enter the scope of the License::Software
+license = License::Software.new do
   type MIT
   year 2012
   author 'Ryan Scott Lewis <ryan@rynet.us>'
