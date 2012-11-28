@@ -4,6 +4,12 @@ describe Licenses::License, '.new' do
   
   context 'When no arguments are given' do
     
+    subject { Licenses::License.new }
+    
+    it 'should create an instance of Licenses::License' do
+      subject.class.should == Licenses::License
+    end
+    
   end
   
   context 'When one argument is given' do

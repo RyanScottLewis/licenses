@@ -6,7 +6,7 @@ module Licenses
     class << self
       
       def inherited(subclass)
-        Licenses.names << subclass
+        Licenses.all << subclass
       end
       
     end
