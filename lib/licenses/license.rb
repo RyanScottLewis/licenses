@@ -18,7 +18,27 @@ module Licenses
       # @api public
       # @since v0.1.0
       def all
-        @all ||= []
+        @all ||= [].freeze
+      end
+
+      # Register a license
+      #
+      # @example
+      #   Licenses::License.all # => []
+      #
+      #   license = Licenses::License.new(name: 'My License')
+      #   Licenses::License.register(license)
+      #
+      #   Licenses::License.all # => [#<License:0x000...>, ...]
+      # @return [License]
+      # @api public
+      # @since v0.1.0
+      def register(license)
+        raise TypeError, "license must be a #{License}" unless license.is_a?(License)
+
+        @all = (all + [license]).freeze
+
+        license
       end
 
       # Find a license by it's attributes
@@ -29,7 +49,9 @@ module Licenses
       # @api public
       # @since v0.1.0
       def find(attributes={})
-        # attributes = attributes.to_h
+        attributes = attributes.to_h
+
+        all.find { |license| license.matches?(attributes) }
       end
       alias [] find
     end
@@ -184,6 +206,27 @@ module Licenses
       @template = format_underscore(value)
     end
 
+    # Check whether this licence matches the given attributes
+    #
+    # @example
+    #   license = Licenses::License.new(shortname: :mit) # => #<License:0x000...>
+    #
+    #   Licenses::License.matches?(shortname: :mit)      # => true
+    #   Licenses::License.matches?(shortname: :foobar)   # => false
+    # @return [#to_h]
+    # @api public
+    # @since v0.1.0
+    def matches?(attributes) # rubocop:disable Metrics/AbcSize
+      result = %I[name shortname url template].any? { |key| attributes.key?(key) }
+
+      result &= value_matches?(@name,     attributes[:name])      if attributes.key?(:name)
+      result &= value_matches?(shortname, attributes[:shortname]) if attributes.key?(:shortname)
+      result &= value_matches?(@url,      attributes[:url])       if attributes.key?(:url)
+      result &= value_matches?(template,  attributes[:template])  if attributes.key?(:template)
+
+      result
+    end
+
     protected
 
     # Update the attributes on this object
@@ -194,6 +237,18 @@ module Licenses
     # @since v0.1.0
     def update_attributes(attributes)
       attributes.to_h.each { |name, value| send("#{name}=", value) }
+    end
+
+    # Check whether the values given matches
+    #
+    # @param [Regexp, #to_s] value
+    # @return [Boolean]
+    # @api private
+    # @since v0.1.0
+    def value_matches?(value, expectation)
+      value = format_string(value)
+
+      expectation.class == Regexp ? value =~ expectation : value == format_string(expectation)
     end
   end
 end

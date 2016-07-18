@@ -240,4 +240,8 @@ describe Licenses::License do
       expect(subject.template).to eq('foobar_my_license_wow_whee')
     end
   end
+
+  describe '#matches?' do
+    pending 'it should return whether the given attributes matches the license'
+  end
 end
