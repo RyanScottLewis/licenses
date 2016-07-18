@@ -3,6 +3,38 @@ require 'support/license_helpers'
 describe Licenses::License do
   include LicenseHelpers
 
+  describe '.all' do
+    subject { described_class.all }
+
+    example 'it should return correctly' do
+      expect(subject).to eq([])
+    end
+
+    example 'it should be frozen' do
+      expect(subject).to be_frozen
+    end
+  end
+
+  describe '.register' do
+    let(:license) { build_license }
+
+    before { described_class.register(license) }
+
+    example 'it should register the license' do
+      expect(described_class.all).to eq([license])
+    end
+  end
+
+  describe '.find' do
+    subject { described_class }
+
+    pending 'it should find a license by the given attributes in the order they were given'
+
+    example 'it should be aliased as #[]' do
+      expect(subject.method(:find) == subject.method(:[]))
+    end
+  end
+
   describe '#initialize' do
     context 'when a name is given' do
       example 'then it should not raise an error' do
