@@ -5,6 +5,8 @@ require 'licenses/version'
 require 'licenses/license'
 
 # Provides an easy way to generate common project license files.
+#
+# @since 0.1.0
 module Licenses
   class << self
     extend Forwardable

@@ -2,6 +2,8 @@ require 'uri'
 
 module Licenses
   # A software license.
+  #
+  # @since 0.1.0
   class License
     class << self
       # Get all licenses
