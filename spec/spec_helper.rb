@@ -100,4 +100,5 @@ RSpec.configure do |config|
   #   Kernel.srand config.seed
 end
 
+require 'support/profiler'
 require 'licenses'
