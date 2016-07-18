@@ -7,4 +7,6 @@ group :development do
   gem 'yard'
   gem 'redcarpet'
   gem 'github-markup'
+  gem 'rspec'
+  gem 'fuubar'
 end
