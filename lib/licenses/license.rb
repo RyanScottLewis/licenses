@@ -1,15 +1,11 @@
-require 'licenses'
-
 module Licenses
   class License
-    
     class << self
       
-      def inherited(subclass)
-        Licenses.all << subclass
+      def all
+        @all ||= []
       end
       
     end
-    
   end
 end
