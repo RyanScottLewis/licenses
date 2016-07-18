@@ -1,0 +1,10 @@
+AllCops:
+  DefaultFormatter: fuubar
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 25

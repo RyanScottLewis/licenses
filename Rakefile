@@ -13,3 +13,9 @@ RSpec::Core::RakeTask.new(:spec)
 require 'yard'
 
 YARD::Rake::YardocTask.new
+
+# -= Rubocop Tasks =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+
+require 'rubocop/rake_task'
+
+RuboCop::RakeTask.new

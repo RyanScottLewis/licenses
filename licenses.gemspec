@@ -6,8 +6,8 @@ require 'licenses/version'
 Gem::Specification.new do |spec|
   spec.name    = File.basename(__FILE__, '.gemspec')
   spec.version = Licenses::VERSION
-  spec.authors = "Ryan Scott Lewis"
-  spec.email   = "ryan@rynet.us"
+  spec.authors = 'Ryan Scott Lewis'
+  spec.email   = 'ryan@rynet.us'
 
   spec.summary     = 'Easily generate software licenses.'
   spec.description = 'Provides an easy way to generate common project license files.'
