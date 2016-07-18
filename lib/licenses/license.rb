@@ -40,7 +40,7 @@ module Licenses
     # @since v0.1.0
     def initialize(attributes = {})
       update_attributes(attributes)
-      
+
       raise ArgumentError, 'name must be given' if @name.nil?
     end
 
@@ -189,7 +189,7 @@ module Licenses
     def update_attributes(attributes)
       attributes.to_h.each { |name, value| send("#{name}=", value) }
     end
-    
+
     # Convert a given value to stripped string
     #
     # @param [Object] value
@@ -199,7 +199,7 @@ module Licenses
     def convert_string(value)
       value.to_s.strip
     end
-    
+
     # Convert a given value to an shortname
     #
     # @param [Object] value
