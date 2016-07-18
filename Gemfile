@@ -14,4 +14,11 @@ group :development do
   gem 'fuubar'
 
   gem 'rubocop'
+
+  gem 'guard'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
+  gem 'guard-yard'
+  gem 'guard-yardstick'
 end
