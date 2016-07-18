@@ -10,6 +10,5 @@
   shortname: gpl30
   url: http://www.gnu.org/licenses/gpl.html
   template: gpl-v3.0
-- name: MIT License
-  shortname: mit
+- name: MIT
   url: https://opensource.org/licenses/MIT
