@@ -69,8 +69,10 @@ module Licenses
     # @since v0.1.0
     def name=(value)
       value = convert_string(value)
-      value = nil if value.blank?
-      
+      value = nil if value.empty?
+
+      raise ArgumentError, 'name not be empty' if value.nil?
+
       @name = value
     end
 
