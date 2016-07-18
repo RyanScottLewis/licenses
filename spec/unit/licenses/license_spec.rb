@@ -28,7 +28,86 @@ describe Licenses::License do
   describe '.find' do
     subject { described_class }
 
-    pending 'it should find a license by the given attributes in the order they were given'
+    context do
+      let(:license_1) do
+        build_license(
+          name:      'Test License 1',
+          shortname: :tl1,
+          url:       'https://example.org/license-1.txt',
+          template:  'tl1_template'
+        )
+      end
+
+      let(:license_2) do
+        build_license(
+          name:     'Simple License 2.0',
+          url:      'https://example.org/simple-license-2.0.txt',
+          template: 'sl20'
+        )
+      end
+
+      let(:license_3) do
+        build_license(
+          name:      'Example Commercial',
+          shortname: :excom,
+          url:       'https://example.com/license.md'
+        )
+      end
+
+      let(:license_4) do
+        build_license(
+          name: 'Another Commercial',
+          url:  'https://example.com/another.md'
+        )
+      end
+
+      before do
+        described_class.register(license_1)
+        described_class.register(license_2)
+        described_class.register(license_3)
+        described_class.register(license_4)
+      end
+
+      example 'it should find a license by the given attributes in the order they were given' do
+        expect(subject.find).to eq(nil)
+
+        expect(subject.find(name: 'Test License 1')).to eq(license_1)
+        expect(subject.find(name: /License 1/)).to eq(license_1)
+        expect(subject.find(shortname: :tl1)).to eq(license_1)
+        expect(subject.find(shortname: /tl/)).to eq(license_1)
+        expect(subject.find(url: 'https://example.org/license-1.txt')).to eq(license_1)
+        expect(subject.find(url: /license-1.txt/)).to eq(license_1)
+        expect(subject.find(template: 'tl1_template')).to eq(license_1)
+        expect(subject.find(template: /tl1/)).to eq(license_1)
+
+        expect(subject.find(name: 'Simple License 2.0')).to eq(license_2)
+        expect(subject.find(name: /License 2/)).to eq(license_2)
+        expect(subject.find(shortname: :simple_license_2_0)).to eq(license_2)
+        expect(subject.find(shortname: /simple_license/)).to eq(license_2)
+        expect(subject.find(url: 'https://example.org/simple-license-2.0.txt')).to eq(license_2)
+        expect(subject.find(url: /2\.0/)).to eq(license_2)
+        expect(subject.find(template: 'sl20')).to eq(license_2)
+        expect(subject.find(template: /sl2/)).to eq(license_2)
+
+        expect(subject.find(name: 'Example Commercial')).to eq(license_3)
+        expect(subject.find(name: /Commercial/)).to eq(license_3)
+        expect(subject.find(shortname: :excom)).to eq(license_3)
+        expect(subject.find(shortname: /com/)).to eq(license_3)
+        expect(subject.find(url: 'https://example.com/license.md')).to eq(license_3)
+        expect(subject.find(url: /example\.com/)).to eq(license_3)
+        expect(subject.find(template: :excom)).to eq(license_3)
+        expect(subject.find(template: /com/)).to eq(license_3)
+
+        expect(subject.find(name: 'Another Commercial')).to eq(license_4)
+        expect(subject.find(name: /Anoth/)).to eq(license_4)
+        expect(subject.find(shortname: :another_commercial)).to eq(license_4)
+        expect(subject.find(shortname: /another/)).to eq(license_4)
+        expect(subject.find(url: 'https://example.com/another.md')).to eq(license_4)
+        expect(subject.find(url: /another/)).to eq(license_4)
+        expect(subject.find(template: :another_commercial)).to eq(license_4)
+        expect(subject.find(template: /another/)).to eq(license_4)
+      end
+    end
 
     example 'it should be aliased as #[]' do
       expect(subject.method(:find) == subject.method(:[]))
