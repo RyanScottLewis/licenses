@@ -71,7 +71,7 @@ module Licenses
       value = convert_string(value)
       value = nil if value.empty?
 
-      raise ArgumentError, 'name not be empty' if value.nil?
+      raise ArgumentError, 'name must not be empty' if value.nil?
 
       @name = value
     end
@@ -90,7 +90,7 @@ module Licenses
     # @api public
     # @since v0.1.0
     def shortname
-      @shortname.nil? ? convert_shortname(@name) : @shortname
+      @shortname.nil? ? convert_underscore(@name).to_sym : @shortname
     end
 
     # Set the shortname
@@ -106,9 +106,7 @@ module Licenses
     # @api public
     # @since v0.1.0
     def shortname=(value)
-      value = convert_shortname(value) unless value.is_a?(Symbol)
-
-      @shortname = value
+      @shortname = convert_underscore(value).to_sym
     end
 
     # Get the url
@@ -159,7 +157,7 @@ module Licenses
     # @api public
     # @since v0.1.0
     def template
-      @template.nil? ? convert_string(shortname) : @template
+      @template.nil? ? convert_underscore(shortname) : @template
     end
 
     # Set the template
@@ -175,7 +173,7 @@ module Licenses
     # @api public
     # @since v0.1.0
     def template=(value)
-      @template = convert_string(value)
+      @template = convert_underscore(value)
     end
 
     protected
@@ -190,7 +188,7 @@ module Licenses
       attributes.to_h.each { |name, value| send("#{name}=", value) }
     end
 
-    # Convert a given value to stripped string
+    # Convert a given value to stripped String
     #
     # @param [Object] value
     # @return [String]
@@ -200,14 +198,21 @@ module Licenses
       value.to_s.strip
     end
 
-    # Convert a given value to an shortname
+    # Convert a given value to an underscored String
     #
     # @param [Object] value
     # @return [Symbol]
     # @api private
     # @since v0.1.0
-    def convert_shortname(value)
-      convert_string(value).downcase.to_sym # TODO: Underscore!
+    def convert_underscore(value)
+      value.to_s
+           .strip
+           .gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+           .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+           .tr('-', '_')
+           .gsub(/\s/, '_')
+           .gsub(/__+/, '_')
+           .downcase
     end
   end
 end
