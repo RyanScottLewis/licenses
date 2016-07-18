@@ -1,5 +1,7 @@
-def valid_license(attributes = {})
-  attributes = { name: 'Test License' }.merge(attributes)
+module LicenseHelpers
+  def build_license(attributes = {})
+    attributes = { name: 'Test License' }.merge(attributes.to_h)
 
-  described_class.new(attributes)
+    Licenses::License.new(attributes)
+  end
 end
