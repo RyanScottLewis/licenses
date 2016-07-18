@@ -24,7 +24,7 @@ module Licenses
       # @return [License, nil]
       # @api public
       # @since v0.1.0
-      def find(attributes = {})
+      def find(attributes={})
         # attributes = attributes.to_h
       end
       alias [] find
@@ -40,7 +40,7 @@ module Licenses
     #   )
     # @api public
     # @since v0.1.0
-    def initialize(attributes = {})
+    def initialize(attributes={})
       update_attributes(attributes)
 
       raise ArgumentError, 'name must be given' if @name.nil?

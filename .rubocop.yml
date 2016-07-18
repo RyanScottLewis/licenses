@@ -1,10 +1,49 @@
 AllCops:
-  DefaultFormatter: fuubar
   DisplayCopNames: true
   DisplayStyleGuide: true
+  ExtraDetails: true
+
+Style/CaseIndentation:
+  IndentOneStep: true
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Style/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+Style/AccessorMethodName:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CaseIndentation:
+  IndentWhenRelativeTo: end
+  IndentOneStep: true
+
+Style/SpaceBeforeFirstArg:
+  Enabled: false
+
+Style/SymbolProc:
+  Enabled: false
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+
+Lint/EndAlignment:
+  AlignWith: variable
+  AutoCorrect: true
 
 Metrics/LineLength:
   Max: 100
 
 Metrics/MethodLength:
   Max: 25
+
+Style/AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
