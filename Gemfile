@@ -13,7 +13,6 @@ group :development do
   gem 'redcarpet'
 
   gem 'rspec'
-  gem 'fuubar'
 
   gem 'rubocop'
 
