@@ -6,6 +6,7 @@ group :development do
   gem 'rake'
 
   gem 'yard'
+  gem 'yardstick'
   gem 'github-markup'
   gem 'redcarpet'
 
