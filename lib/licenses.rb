@@ -3,7 +3,6 @@ require 'forwardable'
 
 require 'licenses/version'
 require 'licenses/license'
-require 'licenses/organization'
 
 # Provides an easy way to generate common project license files.
 module Licenses
