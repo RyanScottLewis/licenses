@@ -1,20 +1,15 @@
 - name: GNU General Public License v1.0
-  alias: gpl10
-  template: gpl-v1.0
+  shortname: gpl10
   url: http://www.gnu.org/licenses/old-licenses/gpl-1.0.html
-  approved_by: [OpenSourceInitiative, FreeSoftwareFoundation]
+  template: gpl-v1.0
 - name: GNU General Public License v2.0
-  alias: gpl20
-  template: gpl-v2.0
+  shortname: gpl20
   url: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-  approved_by: [OpenSourceInitiative, FreeSoftwareFoundation]
+  template: gpl-v2.0
 - name: GNU General Public License v3.0
-  alias: gpl30
-  template: gpl-v3.0
+  shortname: gpl30
   url: http://www.gnu.org/licenses/gpl.html
-  approved_by: [OpenSourceInitiative, FreeSoftwareFoundation]
+  template: gpl-v3.0
 - name: MIT License
-  alias: mit
-  template: mit
+  shortname: mit
   url: https://opensource.org/licenses/MIT
-  approved_by: [FreeSoftwareFoundation, OpenSourceInitiative, CopyFree, Debian, Fedora]
